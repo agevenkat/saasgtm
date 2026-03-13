@@ -13,21 +13,43 @@ const otpStore = new Map();
 let transporter;
 
 async function createTransporter() {
-    // For demo: create an Ethereal test account
-    const testAccount = await nodemailer.createTestAccount();
-    transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
-        auth: {
-            user: testAccount.user,
-            pass: testAccount.pass,
-        },
+    // Check for real SMTP environment variables
+    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+
+    console.log('🔍 Checking SMTP Env:', {
+        hasHost: !!SMTP_HOST,
+        hasPort: !!SMTP_PORT,
+        hasUser: !!SMTP_USER,
+        hasPass: !!SMTP_PASS
     });
-    console.log('📧 Ethereal email configured:', testAccount.user);
-    console.log('   View sent emails at: https://ethereal.email/login');
-    console.log('   User:', testAccount.user);
-    console.log('   Pass:', testAccount.pass);
+
+    if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
+        transporter = nodemailer.createTransport({
+            service: SMTP_HOST.includes('gmail') ? 'gmail' : undefined,
+            host: SMTP_HOST,
+            port: parseInt(SMTP_PORT || '587'),
+            secure: SMTP_PORT === '465',
+            auth: {
+                user: SMTP_USER,
+                pass: SMTP_PASS,
+            },
+        });
+        console.log('✅ Real SMTP configured:', SMTP_HOST);
+    } else {
+        // Fallback to Ethereal for testing
+        const testAccount = await nodemailer.createTestAccount();
+        transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
+            port: 587,
+            secure: false,
+            auth: {
+                user: testAccount.user,
+                pass: testAccount.pass,
+            },
+        });
+        console.log('📧 Ethereal test account configured:', testAccount.user);
+        console.log('   Preview emails at: https://ethereal.email/login');
+    }
 }
 
 // POST /api/send-otp
@@ -51,7 +73,7 @@ app.post('/api/send-otp', async (req, res) => {
 
     try {
         const info = await transporter.sendMail({
-            from: '"SaaS GTM Agency" <audit@saasgtm.agency>',
+            from: `"SaaS GTM Agency" <${process.env.SMTP_USER || 'audit@saasgtm.agency'}>`,
             to: email,
             subject: 'Your Free GTM Audit - Verification Code',
             html: `
