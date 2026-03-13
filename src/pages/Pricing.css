@@ -1,0 +1,146 @@
+.pricing-hero {
+    padding-top: 180px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pricing-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
+}
+
+.pricing-hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-card.popular {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    transform: scale(1.05);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-primary);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.period {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.tier-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    min-height: 60px;
+}
+
+.tier-features {
+    list-style: none;
+    margin-bottom: 40px;
+    flex-grow: 1;
+}
+
+.tier-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.check {
+    color: var(--brand-primary);
+}
+
+.tier-btn {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.faq {
+    margin-top: 100px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.faq-item h4 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .pricing-card.popular {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
