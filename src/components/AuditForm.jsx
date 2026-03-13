@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Mail, Globe, Loader2, CheckCircle2, ShieldCheck, AlertCircle, BarChart3, FileText, Target, TrendingUp } from 'lucide-react';
 import './AuditForm.css';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_URL || ''; // Empty string for relative path in production
 
 const AuditForm = () => {
     const [step, setStep] = useState('form'); // form | otp | report
