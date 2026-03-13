@@ -27,6 +27,7 @@ const ContentMarketing = () => {
                 title="B2B SaaS Content Marketing Agency | Revenue Driven Strategy"
                 description="Expert-led B2B SaaS content marketing that converts. We build full-funnel content engines designed to educate buyers and drive product demo requests."
                 url="/b2b-content-marketing"
+                faqs={contentFaqs}
             />
             {/* ─── HERO ─── */}
             <section className="hero" aria-labelledby="hero-heading">

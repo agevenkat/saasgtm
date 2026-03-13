@@ -1,10 +1,16 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
+import SEO from '../components/SEO';
 import '../pages/Home.css';
 
 const Privacy = () => {
     return (
         <div className="home-page fade-in-up" id="main-content">
+            <SEO
+                title="Privacy Policy | SaaS GTM Agency"
+                description="Our commitment to data privacy and security. Learn how we handle your information with enterprise-grade protection."
+                url="/privacy"
+            />
             <section className="hero">
                 <div className="container" style={{ textAlign: 'center' }}>
                     <header className="hero-text" style={{ maxWidth: '800px', margin: '0 auto' }}>

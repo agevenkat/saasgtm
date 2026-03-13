@@ -27,6 +27,7 @@ const SeoAgency = () => {
                 title="B2B SaaS SEO Agency | Scale Inbound Revenue"
                 description="The premier B2B SaaS SEO agency for high-growth software companies. We turn organic search into a predictable pipeline of demo requests and trials."
                 url="/saas-seo-agency"
+                faqs={seoFaqs}
             />
             {/* ─── HERO ─── */}
             <section className="hero" aria-labelledby="hero-heading">

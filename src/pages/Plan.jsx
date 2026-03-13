@@ -108,6 +108,7 @@ const Plan = () => {
                 title="The 90-Day GTM Plan | SaaS Growth Framework"
                 description="We rebuild your technical SEO, rewrite high-converting ICP messaging, and establish a compounding inbound growth engine in exactly 12 weeks."
                 url="/plan"
+                faqs={planFaqs}
             />
 
             {/* Hero */}

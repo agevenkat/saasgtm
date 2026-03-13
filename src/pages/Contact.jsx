@@ -33,6 +33,7 @@ const Contact = () => {
                 title="Book a Strategy Call | SaaS GTM Agency"
                 description="Schedule a free 30-minute consultancy call with our senior GTM strategists. Let's discuss your inbound growth bottlenecks and how to fix them."
                 url="/contact"
+                faqs={contactFaqs}
             />
             <section className="contact-hero" aria-labelledby="contact-heading">
                 <div className="container">

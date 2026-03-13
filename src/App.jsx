@@ -15,6 +15,7 @@ import CaseStudies from './pages/CaseStudies';
 import Blog from './pages/Blog';
 import Playbook from './pages/Playbook';
 import Privacy from './pages/Privacy';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/playbook" element={<Playbook />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

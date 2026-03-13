@@ -27,6 +27,7 @@ const LeadGeneration = () => {
                 title="SaaS Lead Generation Services | Predictable Inbound Pipeline"
                 description="Scale your SaaS with high-quality inbound lead generation. We build automated funnels that attract your ideal customers and turn them into trials and demos."
                 url="/saas-lead-generation"
+                faqs={leadFaqs}
             />
             {/* ─── HERO ─── */}
             <section className="hero" aria-labelledby="hero-heading">

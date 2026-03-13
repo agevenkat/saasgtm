@@ -31,6 +31,7 @@ const Home = () => {
                 title="SaaS GTM Agency — 90-Day Go-to-Market Plan for Inbound Growth"
                 description="The definitive 90-day go-to-market engine for high-growth SaaS businesses. Turn your product into a pipeline-generating machine."
                 url="/"
+                faqs={homeFaqs}
             />
 
             {/* ─── HERO ─── */}

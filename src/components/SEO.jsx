@@ -8,12 +8,12 @@ const siteMetadata = {
     siteUrl: 'https://saasgtm.agency', // Demo URL for structured data
 };
 
-const SEO = ({ title, description, url, type = 'website', schema }) => {
+const SEO = ({ title, description, url, type = 'website', schema, faqs }) => {
     const seoTitle = title ? title : siteMetadata.title;
     const seoDescription = description || siteMetadata.description;
     const canonical = url ? `${siteMetadata.siteUrl}${url}` : siteMetadata.siteUrl;
 
-    const defaultSchema = {
+    const organizationSchema = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: 'SaaS GTM Agency',
@@ -22,7 +22,32 @@ const SEO = ({ title, description, url, type = 'website', schema }) => {
         description: siteMetadata.description,
     };
 
-    const finalSchema = schema || defaultSchema;
+    // FAQ Schema
+    let faqSchema = null;
+    if (faqs && faqs.length > 0) {
+        faqSchema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
+                }
+            }))
+        };
+    }
+
+    const finalSchema = schema || [organizationSchema];
+    if (faqSchema) {
+        if (Array.isArray(finalSchema)) {
+            finalSchema.push(faqSchema);
+        } else {
+            // If it's a single object, wrap it in an array or keep as is? 
+            // Better to always provide an array of schemas if multiple exist.
+        }
+    }
 
     return (
         <Helmet>
@@ -47,7 +72,9 @@ const SEO = ({ title, description, url, type = 'website', schema }) => {
             <meta property="twitter:description" content={seoDescription} />
 
             {/* JSON-LD Structured Data Schema */}
-            <script type="application/ld+json">{JSON.stringify(finalSchema)}</script>
+            <script type="application/ld+json">
+                {JSON.stringify(faqSchema ? [organizationSchema, faqSchema] : organizationSchema)}
+            </script>
         </Helmet>
     );
 };
